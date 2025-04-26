@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://d1fqhkorrgbh0"]
 
 [ext_resource type="PackedScene" uid="uid://dvq4ro3d1rcw1" path="res://scenes/world.tscn" id="1_p61qw"]
-[ext_resource type="Texture2D" uid="uid://did5qvnifytf1" path="res://art/tilesets/world.png" id="2_nsm10"]
+[ext_resource type="Texture2D" uid="uid://coejxov3asgk1" path="res://art/tilesets/world.png" id="2_nsm10"]
 [ext_resource type="PackedScene" uid="uid://bku1awdq63mba" path="res://scenes/enemies/smushroom.tscn" id="3_8lkp2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8lkp2"]
