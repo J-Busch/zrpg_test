@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy52g0fbqhrpf"]
+
+[ext_resource type="Texture2D" uid="uid://doh1hmy6ne30k" path="res://art/items/sword_normal.png" id="1_76q7b"]
+[ext_resource type="Script" uid="uid://d37e612tm3w5v" path="res://scenes/items/sword.gd" id="1_i5ed0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76q7b"]
+size = Vector2(5.65685, 13.435)
+
+[node name="Sword" type="Area2D"]
+collision_mask = 14
+script = ExtResource("1_i5ed0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 4)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_76q7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.25, 5.25)
+rotation = 2.35619
+shape = SubResource("RectangleShape2D_76q7b")
+
+[node name="FullTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="SwingTimer" type="Timer" parent="."]
+wait_time = 0.08
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FullTimer" to="." method="_on_full_timer_timeout"]
+[connection signal="timeout" from="SwingTimer" to="." method="_on_swing_timer_timeout"]

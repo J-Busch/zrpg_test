@@ -1,0 +1,27 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.import
+*.godot
+*.export
+*.export_presets
+*.mono
+*.tres
+*.tscn.backup
+*.translation
+*.log
+*.tmp
+*.zip
+/export_presets.cfg
+/icon.png
+/icon.png.import
+/default_env.tres
+/default_bus_layout.tres
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Build outputs
+/bin/
+/export/
