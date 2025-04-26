@@ -51,39 +51,44 @@ func _on_timer_timeout():
 	$AnimatedSprite2D.play("walk_" + facing)
 	can_attack = true
 	
-func handle_movement(dir):
-	if (sword != null):
-		set_sword_pos()
-	
+func handle_movement(dir):	
 	if (dir.x != 0 or dir.y != 0):
+
+		if not moving:
+			$AnimatedSprite2D.frame = 1
+			moving = true
+			
 		velocity = dir * speed
 		move_and_slide()
 		
 		if can_attack:
-			if (dir.y == -1.0 or (dir.x != 0 and dir.y < 0)):
-				if not facing == "up":
-					$AnimatedSprite2D.play("walk_up")
-					facing = "up"
-			elif (dir.y == 1.0 or (dir.x != 0 and dir.y > 0)):
-				if not facing == "down":
-					$AnimatedSprite2D.play("walk_down")
-					facing = "down"
+			if (dir.y == -1.0):
+				$AnimatedSprite2D.play("walk_up")
+				facing = "up"
+			elif (dir.y == 1.0):
+				$AnimatedSprite2D.play("walk_down")
+				facing = "down"
 			elif (dir.x == -1.0):
-				if not facing == "left":
-					$AnimatedSprite2D.scale = Vector2(-1,1)
-					$AnimatedSprite2D.play("walk_left")
-					facing = "left"
+				$AnimatedSprite2D.scale = Vector2(-1,1)
+				$AnimatedSprite2D.play("walk_left")
+				facing = "left"
 			elif (dir.x == 1.0):
-				if not facing == "right":
-					$AnimatedSprite2D.scale = Vector2(1,1)
-					$AnimatedSprite2D.play("walk_right")
-					facing = "right"
-			
-		if not moving:
-			moving = true
+				$AnimatedSprite2D.scale = Vector2(1,1)
+				$AnimatedSprite2D.play("walk_right")
+				facing = "right"
+			elif (dir.y < 0):
+				$AnimatedSprite2D.play("walk_up")
+				facing = "up"
+			elif (dir.y > 0):
+				$AnimatedSprite2D.play("walk_down")
+				facing = "down"
 	else:
+		$AnimatedSprite2D.frame = 0
 		$AnimatedSprite2D.stop()
 		moving = false
+	
+	if (sword != null):
+		set_sword_pos()
 
 func set_sword_pos():
 	if facing == "down":
