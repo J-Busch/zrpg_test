@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-var speed: int = 80
+var speed: int = 60
 var direction: Vector2
 var moving: bool = false
 var facing: String = "down"
+var last_facing: String = "down"
 var sword_scene: PackedScene = preload("res://scenes/items/sword.tscn")
 var sword: Area2D
 var can_attack: bool = true
@@ -31,10 +32,10 @@ func handle_sword():
 			elif facing == "up":
 				$AnimatedSprite2D.play("use_up")
 			elif facing == "left":
-				$AnimatedSprite2D.scale = Vector2(-1,1)
+				$AnimatedSprite2D.scale = Vector2(-0.8,0.8)
 				$AnimatedSprite2D.play("use_side")
 			elif facing == "right":
-				$AnimatedSprite2D.scale = Vector2(1,1)
+				$AnimatedSprite2D.scale = Vector2(0.8,0.8)
 				$AnimatedSprite2D.play("use_side")
 				
 			set_sword_pos()
@@ -63,25 +64,24 @@ func handle_movement(dir):
 		
 		if can_attack:
 			if (dir.y == -1.0):
-				$AnimatedSprite2D.play("walk_up")
 				facing = "up"
 			elif (dir.y == 1.0):
-				$AnimatedSprite2D.play("walk_down")
 				facing = "down"
 			elif (dir.x == -1.0):
-				$AnimatedSprite2D.scale = Vector2(-1,1)
-				$AnimatedSprite2D.play("walk_left")
 				facing = "left"
 			elif (dir.x == 1.0):
-				$AnimatedSprite2D.scale = Vector2(1,1)
-				$AnimatedSprite2D.play("walk_right")
 				facing = "right"
 			elif (dir.y < 0):
-				$AnimatedSprite2D.play("walk_up")
 				facing = "up"
 			elif (dir.y > 0):
-				$AnimatedSprite2D.play("walk_down")
 				facing = "down"
+				
+			if last_facing != facing:
+				if facing == "left":
+					$AnimatedSprite2D.scale = Vector2(-0.8,0.8)
+				if facing == "right":
+					$AnimatedSprite2D.scale = Vector2(0.8,0.8)
+				$AnimatedSprite2D.play("walk_" + facing)
 	else:
 		$AnimatedSprite2D.frame = 0
 		$AnimatedSprite2D.stop()
@@ -89,17 +89,19 @@ func handle_movement(dir):
 	
 	if (sword != null):
 		set_sword_pos()
+	
+	last_facing = facing
 
 func set_sword_pos():
 	if facing == "down":
 		sword.scale = Vector2(1,1)
-		sword.global_position = self.global_position + Vector2(0,7)
+		sword.global_position = self.global_position + Vector2(0,6)
 	elif facing == "up":
 		sword.scale = Vector2(-1,-1)
-		sword.global_position = self.global_position + Vector2(0,-7)
+		sword.global_position = self.global_position + Vector2(0,-6)
 	elif facing == "left":
 		sword.scale = Vector2(-1,1)
-		sword.global_position = self.global_position + Vector2(-7,0)
+		sword.global_position = self.global_position + Vector2(-6,0)
 	elif facing == "right":
 		sword.scale = Vector2(1,-1)
-		sword.global_position = self.global_position + Vector2(7,0)
+		sword.global_position = self.global_position + Vector2(6,0)

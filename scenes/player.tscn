@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c4frqfjebaia2" path="res://art/player/player_side.png" id="4_qlg0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
-radius = 8.0
+radius = 6.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjrip"]
 shader = ExtResource("2_tuyoq")
@@ -43,10 +43,6 @@ region = Rect2(17, 0, 17, 16)
 atlas = ExtResource("3_qlg0r")
 region = Rect2(0, 0, 17, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
-atlas = ExtResource("4_qlg0r")
-region = Rect2(0, 0, 17, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
 atlas = ExtResource("4_qlg0r")
 region = Rect2(17, 0, 17, 16)
@@ -59,24 +55,28 @@ region = Rect2(34, 0, 17, 16)
 atlas = ExtResource("4_qlg0r")
 region = Rect2(51, 0, 17, 16)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dqkch"]
-load_path = "res://.godot/imported/player_side.png-b6012f83c795c0bf53efd0b8e20f4cf7.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
-atlas = SubResource("CompressedTexture2D_dqkch")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("4_qlg0r")
 region = Rect2(0, 0, 17, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
-atlas = SubResource("CompressedTexture2D_dqkch")
-region = Rect2(34, 0, 17, 16)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dqkch"]
+load_path = "res://.godot/imported/player_side.png-b6012f83c795c0bf53efd0b8e20f4cf7.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
 atlas = SubResource("CompressedTexture2D_dqkch")
 region = Rect2(17, 0, 17, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = SubResource("CompressedTexture2D_dqkch")
+region = Rect2(0, 0, 17, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
 atlas = SubResource("CompressedTexture2D_dqkch")
 region = Rect2(51, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = SubResource("CompressedTexture2D_dqkch")
+region = Rect2(34, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4r5pv"]
 atlas = ExtResource("4_fjrip")
@@ -139,9 +139,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qfm1y")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fulsm")
 }, {
 "duration": 1.0,
@@ -149,6 +146,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l71n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
 }],
 "loop": true,
 "name": &"walk_left",
@@ -156,16 +156,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tuyoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fjrip")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_oprun")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
 }],
 "loop": true,
 "name": &"walk_right",
@@ -236,11 +236,12 @@ shape = SubResource("CircleShape2D_u8vuu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_fjrip")
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"walk_left"
+animation = &"walk_down"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 
 [node name="Items" type="Node" parent="."]
 

@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Enemy
 
 var health: int = 100
+var damage: int = 10
+var speed = 60
 var launch_distance: int = 250
 var launch_vel: Vector2 = Vector2(0,0)
 var player_in: bool = false
@@ -17,7 +19,7 @@ func _process(delta: float) -> void:
 		queue_free()
 		
 	if player_in:
-		PlayerGlobals.health -= 10
+		PlayerGlobals.health -= damage
 
 func hit(damage: int, _body: CharacterBody2D):
 	health -= damage

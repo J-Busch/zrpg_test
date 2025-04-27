@@ -1,0 +1,182 @@
+[gd_scene load_steps=26 format=3 uid="uid://divorxu01wlxj"]
+
+[ext_resource type="PackedScene" uid="uid://cu1p6cq5ro5y8" path="res://scenes/enemies/enemy.tscn" id="1_g6xdy"]
+[ext_resource type="Script" uid="uid://hdhmf46xcoxb" path="res://scenes/enemies/lancer.gd" id="2_an8di"]
+[ext_resource type="Texture2D" uid="uid://ce0tw1lmxfds7" path="res://art/enemies/lancer/armor lancer down.png" id="2_wdi2t"]
+[ext_resource type="Texture2D" uid="uid://dbswvinyxdjb4" path="res://art/enemies/lancer/armor lancer side.png" id="3_an8di"]
+[ext_resource type="Shader" uid="uid://cp248ivpv5bm6" path="res://scenes/damage.gdshader" id="3_p0314"]
+[ext_resource type="Texture2D" uid="uid://b5ibtwklt8esx" path="res://art/enemies/lancer/armor lancer up.png" id="4_p0314"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_552bv"]
+size = Vector2(12, 14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_552bv"]
+shader = ExtResource("3_p0314")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbcc1"]
+atlas = ExtResource("2_wdi2t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxr3n"]
+atlas = ExtResource("2_wdi2t")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqkdp"]
+atlas = ExtResource("2_wdi2t")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2oot"]
+atlas = ExtResource("2_wdi2t")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtelm"]
+atlas = ExtResource("3_an8di")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy5ev"]
+atlas = ExtResource("3_an8di")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvmki"]
+atlas = ExtResource("3_an8di")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi1cd"]
+atlas = ExtResource("3_an8di")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhkfn"]
+atlas = ExtResource("4_p0314")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sllje"]
+atlas = ExtResource("4_p0314")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp3om"]
+atlas = ExtResource("4_p0314")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqsyd"]
+atlas = ExtResource("4_p0314")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fpblm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbcc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxr3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqkdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2oot")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtelm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy5ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvmki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi1cd")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhkfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sllje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp3om")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqsyd")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6xdy"]
+radius = 111.005
+
+[sub_resource type="Animation" id="Animation_cbcc1"]
+resource_name = "take_damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.3, 0.3, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nxr3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqkdp"]
+_data = {
+&"RESET": SubResource("Animation_nxr3n"),
+&"take_damage": SubResource("Animation_cbcc1")
+}
+
+[node name="Lancer" instance=ExtResource("1_g6xdy")]
+script = ExtResource("2_an8di")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_552bv")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_552bv")
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_fpblm")
+animation = &"walk_up"
+
+[node name="NoticeArea" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
+shape = SubResource("CircleShape2D_g6xdy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_eqkdp")
+}
+
+[connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]

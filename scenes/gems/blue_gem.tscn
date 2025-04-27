@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp10ep2leu2ui"]
+
+[ext_resource type="PackedScene" uid="uid://clcrtn15qpsai" path="res://scenes/gems/gem.tscn" id="1_inpio"]
+[ext_resource type="Texture2D" uid="uid://b8t4wmuen1smn" path="res://art/items/gems.png" id="2_8353k"]
+[ext_resource type="Script" uid="uid://d1jsm6fsymrcl" path="res://scenes/gems/blue_gem.gd" id="2_w8ewh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8ewh"]
+radius = 7.07107
+
+[node name="BlueGem" instance=ExtResource("1_inpio")]
+script = ExtResource("2_w8ewh")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 0)
+shape = SubResource("CircleShape2D_w8ewh")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_8353k")
+region_rect = Rect2(1.98058, 35.2282, 27.1231, 24.2265)

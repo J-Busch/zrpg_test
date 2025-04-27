@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dxjkxi3dcapwp"]
+
+[node name="Background" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
