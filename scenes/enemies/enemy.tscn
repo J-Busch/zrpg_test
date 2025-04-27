@@ -1,6 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu1p6cq5ro5y8"]
+[gd_scene load_steps=8 format=3 uid="uid://cu1p6cq5ro5y8"]
 
 [ext_resource type="Script" uid="uid://dce5pebstf4iv" path="res://scenes/enemies/enemy.gd" id="1_6xk8f"]
+[ext_resource type="Shader" uid="uid://cp248ivpv5bm6" path="res://scenes/damage.gdshader" id="2_8e3ao"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38ino"]
+shader = ExtResource("2_8e3ao")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8e3ao"]
+shader = ExtResource("2_8e3ao")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="Animation" id="Animation_nxr3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cbcc1"]
+resource_name = "take_damage"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqkdp"]
+_data = {
+&"RESET": SubResource("Animation_nxr3n"),
+&"take_damage": SubResource("Animation_cbcc1")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 1
@@ -9,5 +57,24 @@ collision_mask = 13
 script = ExtResource("1_6xk8f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("ShaderMaterial_38ino")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_8e3ao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eqkdp")
+}
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+
+[node name="NoticeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
+[connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
