@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dviiie1xcgpix"]
 
-[ext_resource type="PackedScene" uid="uid://clcrtn15qpsai" path="res://scenes/gems/gem.tscn" id="1_1tw23"]
+[ext_resource type="PackedScene" uid="uid://clcrtn15qpsai" path="res://scenes/items/gems/gem.tscn" id="1_1tw23"]
 [ext_resource type="Texture2D" uid="uid://b8t4wmuen1smn" path="res://art/items/gems.png" id="2_05mgb"]
-[ext_resource type="Script" uid="uid://bq8tpr3aydc47" path="res://scenes/gems/red_gem.gd" id="2_eb5pl"]
+[ext_resource type="Script" uid="uid://bq8tpr3aydc47" path="res://scenes/items/gems/red_gem.gd" id="2_eb5pl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eb5pl"]
-radius = 8.0
+radius = 6.0
 
 [node name="RedGem" instance=ExtResource("1_1tw23")]
 script = ExtResource("2_eb5pl")
@@ -14,4 +14,5 @@ script = ExtResource("2_eb5pl")
 shape = SubResource("CircleShape2D_eb5pl")
 
 [node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.506897, 0.5)
 texture = ExtResource("2_05mgb")

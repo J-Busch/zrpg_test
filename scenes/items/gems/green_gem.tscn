@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://csyr7mfw7gti6"]
 
-[ext_resource type="PackedScene" uid="uid://clcrtn15qpsai" path="res://scenes/gems/gem.tscn" id="1_3hd6c"]
+[ext_resource type="PackedScene" uid="uid://clcrtn15qpsai" path="res://scenes/items/gems/gem.tscn" id="1_3hd6c"]
 [ext_resource type="Texture2D" uid="uid://b8t4wmuen1smn" path="res://art/items/gems.png" id="2_54mbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mc6v"]
-size = Vector2(10.6066, 13.435)
+size = Vector2(7.77817, 10.6066)
 
 [node name="GreenGem" instance=ExtResource("1_3hd6c")]
 
@@ -14,5 +14,7 @@ rotation = 0.785398
 shape = SubResource("RectangleShape2D_5mc6v")
 
 [node name="Sprite2D" parent="." index="1"]
+position = Vector2(-2.98023e-08, 0)
+scale = Vector2(0.525, 0.483333)
 texture = ExtResource("2_54mbf")
 region_rect = Rect2(33.8437, 33.6483, 28.1764, 27.9131)

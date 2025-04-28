@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://d1fqhkorrgbh0"]
+[gd_scene load_steps=9 format=4 uid="uid://d1fqhkorrgbh0"]
 
 [ext_resource type="PackedScene" uid="uid://dvq4ro3d1rcw1" path="res://scenes/world.tscn" id="1_p61qw"]
 [ext_resource type="Texture2D" uid="uid://coejxov3asgk1" path="res://art/tilesets/world.png" id="2_nsm10"]
+[ext_resource type="PackedScene" uid="uid://d2oiewlngvoht" path="res://scenes/items/pot.tscn" id="3_7r1kg"]
 [ext_resource type="PackedScene" uid="uid://bku1awdq63mba" path="res://scenes/enemies/smushroom.tscn" id="3_8lkp2"]
 [ext_resource type="PackedScene" uid="uid://divorxu01wlxj" path="res://scenes/enemies/lancer.tscn" id="4_udpx5"]
 
@@ -219,6 +220,11 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_8lkp2")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7r1kg"]
+vertices = PackedVector2Array(-126.219, -74.5313, -141.773, -73.6094, -140.789, -121, -109.703, -123, -48, -99.3438, 107, -104.648, 107, 57.0469, -48, -48, -58, 57.9375, -58, -37, -84.6875, -48, -133.75, -37, -79, -249, -79, -211, -96.8516, -211, -128, -249, -59, -123, -59, -163, -34, -163, -34, -121, -69, -121, -98.1484, -123, -173, -121, -173, -123, -112.289, -211, -128, -211, -141, -37.4219, -141, -52.6875, -123.93, -55.8984, -85.2969, -67.3828, -69, -68.3906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(10, 7, 9, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(16, 19, 20, 21), PackedInt32Array(2, 22, 23, 3), PackedInt32Array(24, 25, 15), PackedInt32Array(24, 15, 14), PackedInt32Array(3, 24, 14, 21), PackedInt32Array(11, 26, 27, 28, 10), PackedInt32Array(29, 10, 28, 0, 3, 21), PackedInt32Array(29, 21, 20, 30)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-138, -259, -138, -201, -122, -201, -120, -133, -183, -133, -183, -111, -151, -111, -152, -63, -135, -64, -151, -61, -151, -28, -134, -27, -68, -27, -68, 68, 117, 67, 117, -115, -58, -109, -58, -58, -75, -58, -59, -59, -59, -111, -24, -111, -24, -173, -69, -173, -69, -133, -88, -133, -87, -201, -69, -201, -69, -259)])
+
 [node name="Outside" instance=ExtResource("1_p61qw")]
 
 [node name="Ground" type="TileMapLayer" parent="Environment" index="0"]
@@ -237,6 +243,15 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAADAAEAAAANAAMAAAAEAAEAAAAOAAMAAAADAAAAAAANAAIAAAACAAAAAAAMAAIAAAACAP//AAAMAAEAAAACAP7/AAAMAAAAAAADAP7/AAANAAAAAAAEAP7/AAAOAAAAAAAFAP7/AAAPAAAAAAAFAP//AAAPAAEAAAAFAAAAAAAPAAIAAAAEAAAAAAAOAAIAAAAEAP//AAAOAAEAAAADAP//AAANAAEAAAD0//T/AAAMAAAAAAD0//X/AAAMAAEAAAD0//b/AAAMAAIAAAD1//T/AAANAAAAAAD1//X/AAANAAEAAAD1//b/AAANAAIAAAD1//f/AAANAAMAAAD2//T/AAAOAAAAAAD2//X/AAAOAAEAAAD2//b/AAAOAAIAAAD2//f/AAAOAAMAAAD3//T/AAAPAAAAAAD3//X/AAAPAAEAAAD3//b/AAAPAAIAAAD7//L/AAAMAAAAAAD7//P/AAAMAAEAAAD7//T/AAAMAAIAAAD8//L/AAANAAAAAAD8//P/AAANAAEAAAD8//T/AAANAAIAAAD8//X/AAANAAMAAAD9//L/AAAOAAAAAAD9//P/AAAOAAEAAAD9//T/AAAOAAIAAAD9//X/AAAOAAMAAAD+//L/AAAPAAAAAAD+//P/AAAPAAEAAAD+//T/AAAPAAIAAAA=")
 tile_set = SubResource("TileSet_udpx5")
 
+[node name="Pot" parent="Objects" index="0" instance=ExtResource("3_7r1kg")]
+position = Vector2(-52, 36)
+
+[node name="Pot2" parent="Objects" index="1" instance=ExtResource("3_7r1kg")]
+position = Vector2(-42, 39)
+
+[node name="Pot3" parent="Objects" index="2" instance=ExtResource("3_7r1kg")]
+position = Vector2(-50, 44)
+
 [node name="Smushroom" parent="Enemies" index="0" instance=ExtResource("3_8lkp2")]
 position = Vector2(77, -57)
 
@@ -247,9 +262,12 @@ position = Vector2(11, -78)
 position = Vector2(62, -67)
 
 [node name="Lancer" parent="Enemies" index="3" instance=ExtResource("4_udpx5")]
-position = Vector2(-104, -229)
+position = Vector2(-105, -232)
 
 [node name="Player" parent="." index="4"]
 z_index = 1
 position = Vector2(-13, -19)
 metadata/_edit_group_ = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="7"]
+navigation_polygon = SubResource("NavigationPolygon_7r1kg")

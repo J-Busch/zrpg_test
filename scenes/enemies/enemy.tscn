@@ -75,6 +75,8 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]

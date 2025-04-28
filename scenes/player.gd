@@ -76,7 +76,7 @@ func handle_movement(dir):
 			elif (dir.y > 0):
 				facing = "down"
 				
-			if last_facing != facing:
+			if last_facing != facing or !$AnimatedSprite2D.is_playing():
 				if facing == "left":
 					$AnimatedSprite2D.scale = Vector2(-0.8,0.8)
 				if facing == "right":

@@ -17,13 +17,14 @@ func _process(delta: float) -> void:
 		launch_vel = Vector2.ZERO
 	
 	if (health <= 0):
+		Utilities.item_gen($Marker2D)
 		queue_free()
 	
 	if player_in:
 		PlayerGlobals.health -= damage
 
-func hit(damage: int, body: CharacterBody2D):
-	health -= damage
+func hit(hit_damage: int, body: CharacterBody2D):
+	health -= hit_damage
 	var launch_dir = (self.position - PlayerGlobals.position).normalized()
 	launch_vel = launch_dir * launch_distance
 	body.get_node("AnimationPlayer").play("take_damage")

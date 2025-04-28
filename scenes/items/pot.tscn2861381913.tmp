@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2oiewlngvoht"]
+
+[ext_resource type="Script" uid="uid://cifa2n0wm5wvx" path="res://scenes/items/pot.gd" id="1_ka8re"]
+[ext_resource type="Texture2D" uid="uid://b4rceaq1rgkea" path="res://art/items/pots.png" id="1_xt1am"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xt1am"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ka8re"]
+radius = 7.0
+
+[node name="Pot" type="StaticBody2D" groups=["Pot"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_ka8re")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_xt1am")
+region_enabled = true
+region_rect = Rect2(0, 0, 32.3764, 31.8029)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xt1am")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ka8re")
+
+[node name="ItemSpawnLocations" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ItemSpawnLocations"]
+
+[node name="Marker2D2" type="Marker2D" parent="ItemSpawnLocations"]
+
+[node name="Marker2D3" type="Marker2D" parent="ItemSpawnLocations"]

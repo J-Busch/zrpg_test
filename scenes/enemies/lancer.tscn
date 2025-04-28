@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5ibtwklt8esx" path="res://art/enemies/lancer/armor lancer up.png" id="4_p0314"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0314"]
-size = Vector2(11, 12)
+size = Vector2(11, 9)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_552bv"]
 shader = ExtResource("3_p0314")
@@ -127,7 +127,7 @@ radius = 104.005
 script = ExtResource("2_an8di")
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0.5, 0)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_p0314")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
@@ -143,3 +143,12 @@ shape = SubResource("RectangleShape2D_an8di")
 [node name="CollisionShape2D" parent="NoticeArea" index="0"]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_an8di")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="6"]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+
+[node name="NavTimer" type="Timer" parent="." index="7"]
+wait_time = 0.2
+
+[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]
