@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpujrjkjr6dvy"]
+
+[ext_resource type="Texture2D" uid="uid://ppfcdlaxidk1" path="res://art/npcs/cloak/cloak down.png" id="1_d6o7g"]
+[ext_resource type="Texture2D" uid="uid://csf8udgjhbnyj" path="res://art/npcs/cloak/cloak side.png" id="2_k7d8t"]
+[ext_resource type="Texture2D" uid="uid://mmvwms8n0v7c" path="res://art/npcs/cloak/cloak up.png" id="3_f22q0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6o7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6ias"]
+atlas = ExtResource("1_d6o7g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt6pu"]
+atlas = ExtResource("2_k7d8t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eirhg"]
+atlas = ExtResource("3_f22q0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii20a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6ias")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt6pu")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eirhg")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="Cloak" type="StaticBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d6o7g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ii20a")
+animation = &"down"

@@ -3,7 +3,7 @@ extends Enemy
 func _ready():
 	health = 60
 	damage = 30
-	speed = 30
+	speed = 70
 	$NavigationAgent2D.target_position = PlayerGlobals.position
 	
 func _process(delta):

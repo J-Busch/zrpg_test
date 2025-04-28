@@ -4,6 +4,8 @@ signal player_hit
 signal update_ui
 
 var position: Vector2
+var last_scene_position: Vector2 = Vector2.ZERO
+
 var player_vulnerable: bool = true
 var money = 0:
 	set(value):
