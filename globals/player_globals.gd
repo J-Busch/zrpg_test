@@ -24,6 +24,8 @@ var health = 100:
 				player_vulnerable = false
 				player_invulnerable_timer()
 				update_ui.emit()
+				if (health <= 0):
+					TransitionLayer.you_died()
 func player_invulnerable_timer():
 	await get_tree().create_timer(0.5).timeout
 	player_vulnerable = true

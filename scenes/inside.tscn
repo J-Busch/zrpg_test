@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://b41apene5cheq"]
+[gd_scene load_steps=19 format=4 uid="uid://b41apene5cheq"]
 
 [ext_resource type="PackedScene" uid="uid://dvq4ro3d1rcw1" path="res://scenes/world.tscn" id="1_01b43"]
 [ext_resource type="Script" uid="uid://ndv5mrfnkgav" path="res://scenes/inside.gd" id="2_08jqi"]
 [ext_resource type="Texture2D" uid="uid://ckm44u67sb3on" path="res://art/tilesets/house.png" id="2_hqivc"]
 [ext_resource type="PackedScene" uid="uid://cpujrjkjr6dvy" path="res://scenes/npcs/cloak.tscn" id="3_hqivc"]
+[ext_resource type="Texture2D" uid="uid://cp83ajcod5000" path="res://art/lights/circle.png" id="5_2b3hl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08jqi"]
 texture = ExtResource("2_hqivc")
@@ -844,6 +845,39 @@ sources/0 = SubResource("TileSetAtlasSource_2b3hl")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08jqi"]
 size = Vector2(32, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b3hl"]
+size = Vector2(35, 9)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2b3hl"]
+polygon = PackedVector2Array(-17, -73, -5, -73, -5, -72, -17, -72)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_77v4g"]
+polygon = PackedVector2Array(-78, -80, -78, -64, -34, -64, -34, -79, -33, -79, -33, -80)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_d3bmk"]
+polygon = PackedVector2Array(78, -64, 34, -64, 34, -78, 33.0996, -78.4062, 33, -80, 78, -80)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2b3hl"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 7.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+color = Color(1, 1, 0.741176, 0.580392)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_77v4g"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+color = Color(1, 1, 0.8, 0.611765)
+
 [node name="Inside" instance=ExtResource("1_01b43")]
 script = ExtResource("2_08jqi")
 
@@ -852,24 +886,127 @@ tile_map_data = PackedByteArray("AAD+////AAACAAIAAAD9////AAACAAIAAAD8////AAACAAI
 tile_set = SubResource("TileSet_2b3hl")
 
 [node name="On Ground" type="TileMapLayer" parent="Environment" index="1"]
-tile_map_data = PackedByteArray("AAACAPf/AAAPAAgAAAADAPf/AAAQAAgAAAD///f/AAAOAAAAAAAAAPf/AAAPAAAAAAD8//f/AAAOAAgAAAD9//f/AAAPAAgAAAD8//b/AAAOAAcAAAD8//j/AAAOAAkAAAD9//b/AAAPAAcAAAD9//j/AAAPAAkAAAD+//b/AAAQAAcAAAD+//f/AAAQAAgAAAD+//j/AAAQAAkAAAABAPb/AAAOAAcAAAABAPf/AAAOAAgAAAABAPj/AAAOAAkAAAACAPb/AAAPAAcAAAACAPj/AAAPAAkAAAADAPb/AAAQAAcAAAADAPj/AAAQAAkAAAACAPv/AAADAA0AAAADAPv/AAAEAA0AAAAEAPv/AAAFAA0AAAD7//v/AAADAA0AAAD8//v/AAAEAA0AAAD9//v/AAAFAA0AAAD7//f/AAAEAA8AAAD7//j/AAAEABAAAAAEAPf/AAAEAA8AAAAEAPj/AAAEABAAAAA=")
+tile_map_data = PackedByteArray("AAACAPf/AAAPAAgAAAADAPf/AAAQAAgAAAD///f/AAAOAAAAAAAAAPf/AAAPAAAAAAD8//f/AAAOAAgAAAD9//f/AAAPAAgAAAD8//b/AAAOAAcAAAD8//j/AAAOAAkAAAD9//b/AAAPAAcAAAD9//j/AAAPAAkAAAD+//b/AAAQAAcAAAD+//f/AAAQAAgAAAD+//j/AAAQAAkAAAABAPb/AAAOAAcAAAABAPf/AAAOAAgAAAABAPj/AAAOAAkAAAACAPb/AAAPAAcAAAACAPj/AAAPAAkAAAADAPb/AAAQAAcAAAADAPj/AAAQAAkAAAD7//f/AAAEAA8AAAD7//j/AAAEABAAAAAEAPf/AAAEAA8AAAAEAPj/AAAEABAAAAD7//z/AAADAA0AAAD8//z/AAAEAA0AAAD9//z/AAAFAA0AAAACAPz/AAADAA0AAAADAPz/AAAEAA0AAAAEAPz/AAAFAA0AAAD7//3/AAAEAA8AAAD7//7/AAAEABAAAAAEAP3/AAAEAA8AAAAEAP7/AAAEABAAAAA=")
 tile_set = SubResource("TileSet_hqivc")
 
 [node name="Above Ground" type="TileMapLayer" parent="Environment" index="2"]
 z_index = 2
-tile_map_data = PackedByteArray("AAD8//j/AAAJAAoAAAACAPj/AAAJAAoAAAD9//j/AAALAAoAAAADAPb/AAALAAoAAAABAPb/AAAIAAgAAAABAPj/AAAOAAYAAAD+//b/AAAKAAYAAAD8//b/AAAKAAYAAAD///j/AAAKAAwAAAAAAPj/AAALAAwAAAD7//r/AAADAAwAAAD8//r/AAAEAAwAAAD9//r/AAAFAAwAAAACAPr/AAADAAwAAAADAPr/AAAEAAwAAAAEAPr/AAAFAAwAAAD7//7/AAAIAAwAAAD7////AAAIAA0AAAAEAP7/AAAIAAwAAAAEAP//AAAIAA0AAAA=")
+tile_map_data = PackedByteArray("AAD8//j/AAAJAAoAAAACAPj/AAAJAAoAAAD9//j/AAALAAoAAAADAPb/AAALAAoAAAABAPb/AAAIAAgAAAABAPj/AAAOAAYAAAD+//b/AAAKAAYAAAD8//b/AAAKAAYAAAD///j/AAAKAAwAAAAAAPj/AAALAAwAAAD7//v/AAADAAwAAAD8//v/AAAEAAwAAAD9//v/AAAFAAwAAAACAPv/AAADAAwAAAADAPv/AAAEAAwAAAAEAPv/AAAFAAwAAAD+//7/AAAIAAwAAAD+////AAAIAA0AAAABAP7/AAAIAAwAAAABAP//AAAIAA0AAAA=")
 tile_set = SubResource("TileSet_77v4g")
 
 [node name="Player" parent="." index="4"]
 position = Vector2(0, -18)
 
 [node name="Cloak" parent="." index="7" instance=ExtResource("3_hqivc")]
-position = Vector2(-16, -73)
+position = Vector2(-11, -81)
 
 [node name="Area2D" type="Area2D" parent="." index="8"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+z_index = 1
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_08jqi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="10"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_2b3hl")
+
+[node name="Lights" type="Node" parent="." index="11"]
+
+[node name="Candle" type="PointLight2D" parent="Lights" index="0"]
+position = Vector2(72, -130)
+color = Color(1, 1, 0.788235, 1)
+energy = 0.5
+texture = ExtResource("5_2b3hl")
+texture_scale = 0.4
+metadata/_edit_lock_ = true
+
+[node name="Candle2" type="PointLight2D" parent="Lights" index="1"]
+position = Vector2(-72, -131)
+color = Color(1, 1, 0.788235, 1)
+energy = 0.5
+texture = ExtResource("5_2b3hl")
+texture_scale = 0.4
+metadata/_edit_lock_ = true
+
+[node name="Candle3" type="PointLight2D" parent="Lights" index="2"]
+position = Vector2(72, -35)
+color = Color(1, 1, 0.788235, 1)
+energy = 1.8
+texture = ExtResource("5_2b3hl")
+texture_scale = 0.4
+metadata/_edit_lock_ = true
+
+[node name="Candle4" type="PointLight2D" parent="Lights" index="3"]
+position = Vector2(-72, -34)
+color = Color(1, 1, 0.788235, 1)
+energy = 1.8
+texture = ExtResource("5_2b3hl")
+texture_scale = 0.4
+metadata/_edit_lock_ = true
+
+[node name="Fireplace" type="PointLight2D" parent="Lights" index="4"]
+position = Vector2(0, -121)
+color = Color(1, 1, 0.776471, 1)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.247059)
+shadow_filter = 1
+shadow_filter_smooth = 2.0
+texture = ExtResource("5_2b3hl")
+texture_scale = 0.6
+metadata/_edit_lock_ = true
+
+[node name="Darken" type="DirectionalLight2D" parent="Lights" index="5"]
+blend_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Lights" index="6"]
+occluder = SubResource("OccluderPolygon2D_2b3hl")
+metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Lights" index="7"]
+occluder = SubResource("OccluderPolygon2D_77v4g")
+metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Lights" index="8"]
+occluder = SubResource("OccluderPolygon2D_d3bmk")
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Lights" index="9"]
+z_index = 10
+position = Vector2(72, -131)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_2b3hl")
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Lights" index="10"]
+z_index = 10
+position = Vector2(-72, -131)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_2b3hl")
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Lights" index="11"]
+z_index = 10
+position = Vector2(72, -35)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_2b3hl")
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Lights" index="12"]
+z_index = 10
+position = Vector2(-72, -35)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_2b3hl")
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Lights" index="13"]
+z_index = 10
+position = Vector2(0, -120)
+amount = 40
+lifetime = 2.5
+process_material = SubResource("ParticleProcessMaterial_77v4g")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

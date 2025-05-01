@@ -14,6 +14,7 @@ func _ready() -> void:
 	
 func handle_player_hit():
 	$AnimationPlayer.play("take_damage")
+		
 
 func _process(_delta):
 	PlayerGlobals.position = self.global_position

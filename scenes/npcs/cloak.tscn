@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpujrjkjr6dvy"]
+[gd_scene load_steps=11 format=3 uid="uid://cpujrjkjr6dvy"]
 
 [ext_resource type="Texture2D" uid="uid://ppfcdlaxidk1" path="res://art/npcs/cloak/cloak down.png" id="1_d6o7g"]
+[ext_resource type="Script" uid="uid://dheln7610mqkj" path="res://scenes/npcs/cloak.gd" id="1_k7d8t"]
 [ext_resource type="Texture2D" uid="uid://csf8udgjhbnyj" path="res://art/npcs/cloak/cloak side.png" id="2_k7d8t"]
 [ext_resource type="Texture2D" uid="uid://mmvwms8n0v7c" path="res://art/npcs/cloak/cloak up.png" id="3_f22q0"]
 
@@ -45,10 +46,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7d8t"]
+radius = 13.0
+
 [node name="Cloak" type="StaticBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 13
+script = ExtResource("1_k7d8t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d6o7g")
@@ -56,3 +61,11 @@ shape = SubResource("CircleShape2D_d6o7g")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ii20a")
 animation = &"down"
+
+[node name="TalkArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
+shape = SubResource("CircleShape2D_k7d8t")
+
+[connection signal="body_entered" from="TalkArea" to="." method="_on_talk_area_body_entered"]
+[connection signal="body_exited" from="TalkArea" to="." method="_on_talk_area_body_exited"]
