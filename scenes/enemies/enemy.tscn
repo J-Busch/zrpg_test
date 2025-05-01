@@ -50,7 +50,7 @@ _data = {
 &"take_damage": SubResource("Animation_cbcc1")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 13

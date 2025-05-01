@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ox7bhxglxamb"]
+
+[ext_resource type="Texture2D" uid="uid://dyyjb2qwr7b4y" path="res://art/items/rock_round.png" id="1_pwep7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6bhr"]
+radius = 8.0
+
+[node name="Boulder" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 31
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_pwep7")
+region_enabled = true
+region_rect = Rect2(0, 0, 32.4878, 31.7345)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y6bhr")

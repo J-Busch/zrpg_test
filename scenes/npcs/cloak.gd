@@ -12,7 +12,10 @@ var dialogue = [
 
 func _process(_delta):
 	if player_in and Input.is_action_just_pressed("action"):
-		DialogueManager.talk(dialogue)
+		if PlayerGlobals.has_bombs:
+			DialogueManager.talk(["Go away!"])
+		else:
+			DialogueManager.talk(dialogue)
 	
 	var dir = (global_position - PlayerGlobals.position).normalized()
 	

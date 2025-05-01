@@ -7,6 +7,8 @@ var facing: String = "down"
 var last_facing: String = "down"
 var sword_scene: PackedScene = preload("res://scenes/items/sword.tscn")
 var sword: Area2D
+var bomb_scene: PackedScene = preload("res://scenes/items/bomb.tscn")
+var bomb: CharacterBody2D
 var can_attack: bool = true
 
 func _ready() -> void:
@@ -20,34 +22,47 @@ func _process(_delta):
 	PlayerGlobals.position = self.global_position
 	direction = Input.get_vector("left", "right", "up", "down")
 	handle_movement(direction)
-	handle_sword()
+	handle_use()
 	
-func handle_sword():
-	if Input.is_action_just_pressed("main"):
-		if (can_attack):
-			can_attack = false
-			sword = sword_scene.instantiate() as Area2D
-			
-			if facing == "down":
-				$AnimatedSprite2D.play("use_down")
-			elif facing == "up":
-				$AnimatedSprite2D.play("use_up")
-			elif facing == "left":
-				$AnimatedSprite2D.scale = Vector2(-0.8,0.8)
-				$AnimatedSprite2D.play("use_side")
-			elif facing == "right":
-				$AnimatedSprite2D.scale = Vector2(0.8,0.8)
-				$AnimatedSprite2D.play("use_side")
-				
-			set_sword_pos()
-			
-			var tween = create_tween()
-			tween.tween_property(sword, "rotation", sword.rotation + PI/2, 0.1)
-			
-			$Items.add_child(sword)
-			
-			var timer = sword.get_node("FullTimer")
-			timer.timeout.connect(_on_timer_timeout)
+func handle_use():
+	if Input.is_action_just_pressed("main") and can_attack:
+		can_attack = false
+		sword = sword_scene.instantiate() as Area2D
+		
+		set_use_dir()
+		set_use_pos(sword, true, 6)
+		
+		var tween = create_tween()
+		tween.tween_property(sword, "rotation", sword.rotation + PI/2, 0.1)
+		
+		$Items.add_child(sword)
+		
+		var timer = sword.get_node("FullTimer")
+		timer.timeout.connect(_on_timer_timeout)
+	elif Input.is_action_just_pressed("secondary") and can_attack and PlayerGlobals.has_bombs and PlayerGlobals.bombs > 0:
+		can_attack = false
+		PlayerGlobals.bombs -= 1
+		bomb = bomb_scene.instantiate() as CharacterBody2D
+		
+		set_use_dir()
+		set_use_pos(bomb, false, 10)
+		
+		$Items.add_child(bomb)
+		
+		await get_tree().create_timer(0.25).timeout
+		_on_timer_timeout()
+		
+func set_use_dir():
+	if facing == "down":
+		$AnimatedSprite2D.play("use_down")
+	elif facing == "up":
+		$AnimatedSprite2D.play("use_up")
+	elif facing == "left":
+		$AnimatedSprite2D.scale = Vector2(-0.8,0.8)
+		$AnimatedSprite2D.play("use_side")
+	elif facing == "right":
+		$AnimatedSprite2D.scale = Vector2(0.8,0.8)
+		$AnimatedSprite2D.play("use_side")
 
 func _on_timer_timeout():
 	$AnimatedSprite2D.play("walk_" + facing)
@@ -89,20 +104,24 @@ func handle_movement(dir):
 		moving = false
 	
 	if (sword != null):
-		set_sword_pos()
+		set_use_pos(sword, true, 6)
 	
 	last_facing = facing
 
-func set_sword_pos():
+func set_use_pos(useable, rotated, dist):
 	if facing == "down":
-		sword.scale = Vector2(1,1)
-		sword.global_position = self.global_position + Vector2(0,6)
+		if rotated:
+			useable.scale = Vector2(1,1)
+		useable.global_position = self.global_position + Vector2(0,dist)
 	elif facing == "up":
-		sword.scale = Vector2(-1,-1)
-		sword.global_position = self.global_position + Vector2(0,-6)
+		if rotated:
+			useable.scale = Vector2(-1,-1)
+		useable.global_position = self.global_position + Vector2(0,-dist)
 	elif facing == "left":
-		sword.scale = Vector2(-1,1)
-		sword.global_position = self.global_position + Vector2(-6,0)
+		if rotated:
+			useable.scale = Vector2(-1,1)
+		useable.global_position = self.global_position + Vector2(-dist,0)
 	elif facing == "right":
-		sword.scale = Vector2(1,-1)
-		sword.global_position = self.global_position + Vector2(6,0)
+		if rotated:
+			useable.scale = Vector2(1,-1)
+		useable.global_position = self.global_position + Vector2(dist,0)

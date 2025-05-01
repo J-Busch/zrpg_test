@@ -92,6 +92,7 @@ animations = [{
 radius = 11.0
 
 [node name="Smushroom" instance=ExtResource("1_upd4b")]
+collision_mask = 29
 script = SubResource("GDScript_wp60e")
 
 [node name="CollisionShape2D" parent="." index="0"]
@@ -111,7 +112,7 @@ animation = &"idle"
 frame_progress = 0.612984
 
 [node name="CollisionShape2D" parent="DamageArea" index="0"]
-position = Vector2(0, -3)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_m0dwj")
 
 [node name="CollisionShape2D" parent="NoticeArea" index="0"]

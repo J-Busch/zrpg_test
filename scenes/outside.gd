@@ -8,3 +8,7 @@ func _on_house_enter_body_entered(body: Node2D) -> void:
 	if (body.name == "Player"):
 		PlayerGlobals.last_scene_position = Vector2(PlayerGlobals.position.x, PlayerGlobals.position.y + 20)
 		TransitionLayer.change_scene("res://scenes/inside.tscn")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	TransitionLayer.win()

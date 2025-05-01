@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 				cur_label.add_theme_color_override("font_color", "f12728")
 				changed = false
 		else:
+			dia.pop_back()
 			index = 0
 			talking = false
 			stop_talking()
@@ -55,12 +56,16 @@ func _process(_delta: float) -> void:
 			cur_label.add_theme_color_override("font_color", "f12728")
 		if Input.is_action_just_pressed("action"):
 			var cur_label = $MarginContainer/HBoxContainer.get_child(cursor_pos)
+			delete_all_children($MarginContainer/HBoxContainer)
+			if cur_label.text == "Yes":
+				if PlayerGlobals.money >= 20:
+					PlayerGlobals.money -= 20
+					PlayerGlobals.has_bombs = true
+				else:
+					dia.append("Come back when you're, erm, richer.")
+			else:
+				dia.append("Suit yourself...")
 			in_menu = false
-			print(cur_label.text)
-			
-			#HANDLE
-			#BUY
-			#BOMBS
 	
 
 func talk(dialogue):
@@ -73,7 +78,6 @@ func talk(dialogue):
 
 func stop_talking():
 	get_tree().paused = false
-	delete_all_children($MarginContainer/HBoxContainer)
 	talking = false
 	menu = []
 	cursor_pos = 0

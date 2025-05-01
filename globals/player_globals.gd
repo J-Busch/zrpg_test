@@ -5,6 +5,14 @@ signal update_ui
 
 var position: Vector2
 var last_scene_position: Vector2 = Vector2.ZERO
+var has_bombs: bool = false:
+	set(value):
+		has_bombs = value
+		update_ui.emit()
+var bombs: int = 5:
+	set(value):
+		bombs = value
+		update_ui.emit()
 
 var player_vulnerable: bool = true
 var money = 0:

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://rnwtrjtem1qt"]
+
+[ext_resource type="Script" uid="uid://bhqpnc3y7sn60" path="res://scenes/items/bomb.gd" id="1_4cwmu"]
+[ext_resource type="Texture2D" uid="uid://c6s8qxuk6c433" path="res://art/items/bomb.png" id="1_ac2s1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wiri"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ac2s1"]
+radius = 9.0
+
+[node name="Bomb" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 4
+collision_mask = 31
+script = ExtResource("1_4cwmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2wiri")
+
+[node name="FuseTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BombSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_ac2s1")
+region_enabled = true
+region_rect = Rect2(0, 0, 15.8934, 16.4516)
+
+[node name="ExplosionSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_ac2s1")
+region_enabled = true
+region_rect = Rect2(71.3494, 7.37822, 33.2265, 33.3026)
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_ac2s1")
+disabled = true
+
+[connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]

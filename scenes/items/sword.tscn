@@ -9,7 +9,7 @@ size = Vector2(5.65685, 12.0208)
 [node name="Sword" type="Area2D"]
 z_index = 1
 collision_layer = 4
-collision_mask = 10
+collision_mask = 30
 script = ExtResource("1_i5ed0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
