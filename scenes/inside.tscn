@@ -886,12 +886,12 @@ tile_map_data = PackedByteArray("AAD+////AAACAAIAAAD9////AAACAAIAAAD8////AAACAAI
 tile_set = SubResource("TileSet_2b3hl")
 
 [node name="On Ground" type="TileMapLayer" parent="Environment" index="1"]
-tile_map_data = PackedByteArray("AAACAPf/AAAPAAgAAAADAPf/AAAQAAgAAAD///f/AAAOAAAAAAAAAPf/AAAPAAAAAAD8//f/AAAOAAgAAAD9//f/AAAPAAgAAAD8//b/AAAOAAcAAAD8//j/AAAOAAkAAAD9//b/AAAPAAcAAAD9//j/AAAPAAkAAAD+//b/AAAQAAcAAAD+//f/AAAQAAgAAAD+//j/AAAQAAkAAAABAPb/AAAOAAcAAAABAPf/AAAOAAgAAAABAPj/AAAOAAkAAAACAPb/AAAPAAcAAAACAPj/AAAPAAkAAAADAPb/AAAQAAcAAAADAPj/AAAQAAkAAAD7//f/AAAEAA8AAAD7//j/AAAEABAAAAAEAPf/AAAEAA8AAAAEAPj/AAAEABAAAAD7//z/AAADAA0AAAD8//z/AAAEAA0AAAD9//z/AAAFAA0AAAACAPz/AAADAA0AAAADAPz/AAAEAA0AAAAEAPz/AAAFAA0AAAD7//3/AAAEAA8AAAD7//7/AAAEABAAAAAEAP3/AAAEAA8AAAAEAP7/AAAEABAAAAA=")
+tile_map_data = PackedByteArray("AAACAPf/AAAPAAgAAAADAPf/AAAQAAgAAAD///f/AAAOAAAAAAAAAPf/AAAPAAAAAAD8//f/AAAOAAgAAAD9//f/AAAPAAgAAAD8//b/AAAOAAcAAAD8//j/AAAOAAkAAAD9//b/AAAPAAcAAAD9//j/AAAPAAkAAAD+//b/AAAQAAcAAAD+//f/AAAQAAgAAAD+//j/AAAQAAkAAAABAPb/AAAOAAcAAAABAPf/AAAOAAgAAAABAPj/AAAOAAkAAAACAPb/AAAPAAcAAAACAPj/AAAPAAkAAAADAPb/AAAQAAcAAAADAPj/AAAQAAkAAAD7//z/AAADAA0AAAD8//z/AAAEAA0AAAD9//z/AAAFAA0AAAACAPz/AAADAA0AAAADAPz/AAAEAA0AAAAEAPz/AAAFAA0AAAA=")
 tile_set = SubResource("TileSet_hqivc")
 
 [node name="Above Ground" type="TileMapLayer" parent="Environment" index="2"]
 z_index = 2
-tile_map_data = PackedByteArray("AAD8//j/AAAJAAoAAAACAPj/AAAJAAoAAAD9//j/AAALAAoAAAADAPb/AAALAAoAAAABAPb/AAAIAAgAAAABAPj/AAAOAAYAAAD+//b/AAAKAAYAAAD8//b/AAAKAAYAAAD///j/AAAKAAwAAAAAAPj/AAALAAwAAAD7//v/AAADAAwAAAD8//v/AAAEAAwAAAD9//v/AAAFAAwAAAACAPv/AAADAAwAAAADAPv/AAAEAAwAAAAEAPv/AAAFAAwAAAD+//7/AAAIAAwAAAD+////AAAIAA0AAAABAP7/AAAIAAwAAAABAP//AAAIAA0AAAA=")
+tile_map_data = PackedByteArray("AAD8//j/AAAJAAoAAAACAPj/AAAJAAoAAAD9//j/AAALAAoAAAADAPb/AAALAAoAAAABAPb/AAAIAAgAAAABAPj/AAAOAAYAAAD+//b/AAAKAAYAAAD8//b/AAAKAAYAAAD///j/AAAKAAwAAAAAAPj/AAALAAwAAAD7//v/AAADAAwAAAD8//v/AAAEAAwAAAD9//v/AAAFAAwAAAACAPv/AAADAAwAAAADAPv/AAAEAAwAAAAEAPv/AAAFAAwAAAD+//7/AAAIAAwAAAD+////AAAIAA0AAAABAP7/AAAIAAwAAAABAP//AAAIAA0AAAD7//3/AAAEAA8AAAD7//7/AAAEABAAAAD7//f/AAAEAA8AAAD7//j/AAAEABAAAAAEAPf/AAAEAA8AAAAEAPj/AAAEABAAAAAEAP3/AAAEAA8AAAAEAP7/AAAEABAAAAA=")
 tile_set = SubResource("TileSet_77v4g")
 
 [node name="Player" parent="." index="4"]
@@ -916,6 +916,7 @@ shape = SubResource("RectangleShape2D_2b3hl")
 [node name="Lights" type="Node" parent="." index="11"]
 
 [node name="Candle" type="PointLight2D" parent="Lights" index="0"]
+z_index = 2
 position = Vector2(72, -130)
 color = Color(1, 1, 0.788235, 1)
 energy = 0.5
@@ -924,6 +925,7 @@ texture_scale = 0.4
 metadata/_edit_lock_ = true
 
 [node name="Candle2" type="PointLight2D" parent="Lights" index="1"]
+z_index = 2
 position = Vector2(-72, -131)
 color = Color(1, 1, 0.788235, 1)
 energy = 0.5
@@ -932,6 +934,7 @@ texture_scale = 0.4
 metadata/_edit_lock_ = true
 
 [node name="Candle3" type="PointLight2D" parent="Lights" index="2"]
+z_index = 2
 position = Vector2(72, -35)
 color = Color(1, 1, 0.788235, 1)
 energy = 1.8
@@ -940,6 +943,7 @@ texture_scale = 0.4
 metadata/_edit_lock_ = true
 
 [node name="Candle4" type="PointLight2D" parent="Lights" index="3"]
+z_index = 2
 position = Vector2(-72, -34)
 color = Color(1, 1, 0.788235, 1)
 energy = 1.8
